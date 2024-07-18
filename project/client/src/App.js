@@ -30,7 +30,7 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute role={"user"}>
+              <ProtectedRoute>
                 <Home />
               </ProtectedRoute>
             }
@@ -38,7 +38,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute role={"admin"}>
+              <ProtectedRoute>
                 <Admin />
               </ProtectedRoute>
             }
@@ -46,7 +46,7 @@ function App() {
           <Route
             path="/profile"
             element={
-              <ProtectedRoute role={"user"}>
+              <ProtectedRoute>
                 <Profile />
               </ProtectedRoute>
             }
@@ -54,7 +54,7 @@ function App() {
           <Route
             path="/partner"
             element={
-              <ProtectedRoute role={"partner"}>
+              <ProtectedRoute>
                 <Partner />
               </ProtectedRoute>
             }

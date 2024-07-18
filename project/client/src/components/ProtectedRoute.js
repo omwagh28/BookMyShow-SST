@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { setUser } from "../redux/userSlice";
 
-function ProtectedRoute({ children, role }) {
+function ProtectedRoute({ children }) {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,15 +32,15 @@ function ProtectedRoute({ children, role }) {
         {
           label: (
             <span
-              onClick={() => {
-                if (user.role === "admin") {
-                  navigate("/admin");
-                } else if (user.role === "partner") {
-                  navigate("/partner");
-                } else {
-                  navigate("/profile");
-                }
-              }}
+            onClick={() => {
+              if (user.role === 'admin') {
+                navigate("/admin");
+              } else if (user.role === 'partner') {
+                navigate("/partner");
+              } else {
+                navigate("/profile");
+              }
+            }}
             >
               My Profile
             </span>
@@ -69,7 +69,7 @@ function ProtectedRoute({ children, role }) {
     try {
       dispatch(showLoading());
       const response = await GetCurrentUser();
-      console.log(response);
+      console.log(response)
       dispatch(setUser(response.data));
       dispatch(hideLoading());
       // Hide Loader
@@ -86,19 +86,6 @@ function ProtectedRoute({ children, role }) {
       navigate("/login");
     }
   }, []);
-
-  useEffect(() => {
-    if (user && role && user.role !== role) {
-      message.error("You are not authorized to access that page!");
-      if (user.role === "admin") {
-        navigate("/admin");
-      } else if (user.role === "partner") {
-        navigate("/partner");
-      } else {
-        navigate("/");
-      }
-    }
-  }, [user, role]);
 
   return (
     user && (
